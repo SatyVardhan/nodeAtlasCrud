@@ -10,6 +10,7 @@ exports.listUsers= async (req,res) => {
 }
 
 exports.createUser= async (req,res) => {
+    
 }
 
 exports.updateUser= async (req,res) => {
