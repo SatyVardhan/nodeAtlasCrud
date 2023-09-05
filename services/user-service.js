@@ -10,8 +10,27 @@ exports.listUsers= async (req,res) => {
 }
 
 exports.createUser= async (req,res) => {
-    
+    try {
+        const {name,email,password} = req.body;
+        let data = await userDAO.createUserList(name,email,password);
+        res.send("created Succesfully");
+    } catch (error) {
+        res.send(`Create API error ${error.message}`);
+    }
 }
 
-exports.updateUser= async (req,res) => {
+exports.loginUser= async (req,res) => {
+    try {
+        const {email,password} = req.body;
+        let data = await userDAO.loginUserDao(email);
+        if (!data){
+            res.send("User not found");
+        }
+        if (password === data.password){
+            res.send("Login succesfull");
+        }
+        
+    } catch (error) {
+        res.send(`Login API error ${error.message}`)
+    }
     }
